@@ -56,3 +56,40 @@ const (
 )
 
 ```
+
+## 建表语句
+活动表
+```sql
+CREATE TABLE `activities` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `activity_id` char(36) NOT NULL,
+  `message_template` varchar(255) NOT NULL,
+  `scheduled_time` datetime NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `status` int NOT NULL,
+  PRIMARY KEY (`id`)
+)
+```
+
+消息表
+```sql
+CREATE TABLE `messages` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `message` text NOT NULL,
+  `user_id` int NOT NULL,
+  `activity_id` int NOT NULL,
+  `status` int DEFAULT '0',
+  PRIMARY KEY (`id`)
+)
+```
+
+用户表
+```sql
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `phone` char(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `phone` (`phone`)
+)
+```
